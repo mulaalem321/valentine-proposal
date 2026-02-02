@@ -153,16 +153,33 @@ function finishQuiz() {
     quizCard.innerHTML = `
       <p class="quiz-question">You missed question${missedQuestions.length > 1 ? 's' : ''}: ${missedList}</p>
       <p class="try-again-text">You need a perfect score to continue!</p>
-      <button class="quiz-option try-again-btn" onclick="restartQuiz()">Try Again</button>
+      <button class="quiz-option try-again-btn" id="try-again-btn">Try Again</button>
     `;
     feedback.textContent = `You got ${score}/${quizQuestions.length}`;
+
+    // Add event listener for try again button (works better on mobile)
+    document.getElementById("try-again-btn").addEventListener("click", restartQuiz);
+    document.getElementById("try-again-btn").addEventListener("touchend", function(e) {
+      e.preventDefault();
+      restartQuiz();
+    });
   }
 }
 
 function restartQuiz() {
+  // Reset state
   currentQuestionIndex = 0;
   score = 0;
   missedQuestions = [];
+
+  // Restore quiz card structure
+  const quizCard = document.querySelector(".quiz-card");
+  quizCard.innerHTML = `
+    <img class="quiz-image" id="quiz-image" src="" alt="Quiz photo">
+    <p class="quiz-question" id="quiz-question-text"></p>
+    <div class="quiz-options" id="quiz-options"></div>
+  `;
+
   document.getElementById("quiz-feedback").textContent = "";
   loadQuestion();
 }
