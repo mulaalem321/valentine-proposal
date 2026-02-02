@@ -297,7 +297,7 @@ function createConfetti() {
 
 // Countdown timer
 function updateCountdown() {
-  const valentine = new Date('February 14, 2025 00:00:00').getTime();
+  const valentine = new Date('February 14, 2026 00:00:00').getTime();
   const now = new Date().getTime();
   const distance = valentine - now;
 
@@ -338,7 +338,7 @@ function showMessage(response) {
 
     // Update the text content and show countdown
     const yesMessage = document.getElementById("question");
-    yesMessage.innerHTML = `See you on the 14th my princess<br><span id="countdown" class="countdown"></span>`;
+    yesMessage.innerHTML = `Yeees! See you on the 14th, Princess.<br><span id="countdown" class="countdown"></span>`;
     yesMessage.style.display = "block";
     yesMessage.style.fontStyle = "normal";
     document.getElementsByClassName("image")[0].src = "images/dance.gif";
